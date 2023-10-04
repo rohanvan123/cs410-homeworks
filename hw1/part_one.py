@@ -31,6 +31,6 @@ def parseData(fileName):
     return vocabulary, clean_descriptions
 
 vocabulary, clean_descriptions = parseData(trainFile)
-print(vocabulary)
+# print(vocabulary)
 
     

@@ -1,3 +1,4 @@
+import random
 import pandas as pd 
 import numpy as np
 import nltk
@@ -45,7 +46,12 @@ vals = basic_bit_vector("reuters stocks friday", vocabTopTen, clean_descriptions
 vals = basic_bit_vector("investment market prices", vocabTopTen, clean_descriptions, "train")
 
 vocabulary, clean_descriptions = part_one.parseData(testFile)
-vals = basic_bit_vector("olympic gold athens", vocabTopTen, clean_descriptions, "test")
-vals = basic_bit_vector("reuters stocks friday", vocabTopTen, clean_descriptions, "test")
-vals = basic_bit_vector("investment market prices", vocabTopTen, clean_descriptions, "test")
+vals = basic_bit_vector("olympic gold athens", vocabulary, clean_descriptions, "test")
+vals = basic_bit_vector("reuters stocks friday", vocabulary, clean_descriptions, "test")
+vals = basic_bit_vector("investment market prices", vocabulary, clean_descriptions, "test")
+
+# randomly generated query
+randWords = [random.choice(vocabulary), random.choice(vocabulary), random.choice(vocabulary)]
+randString = " ".join(randWords)
+vals = basic_bit_vector(randString, vocabulary, clean_descriptions, "test")
     

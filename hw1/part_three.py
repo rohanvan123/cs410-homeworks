@@ -1,8 +1,9 @@
+import random
 import pandas as pd 
 import numpy as np
 import nltk
 from nltk.corpus import stopwords
-from part_one import parseData
+import part_one
 
 testFile = "./data/test.csv"
 trainFile = "./data/train.csv"
@@ -57,13 +58,17 @@ def tf_idf(q, vocabulary, descriptions, testType):
         print(vals[:5])
 
 
-vocabulary, clean_descriptions = parseData(trainFile)
+vocabulary, clean_descriptions = part_one.parseData(trainFile)
 vocabTopTen = vocabulary[:10]
 vals = tf_idf("olympic gold athens", vocabTopTen, clean_descriptions, "train")
 vals = tf_idf("reuters stocks friday", vocabTopTen, clean_descriptions, "train")
 vals = tf_idf("investment market prices", vocabTopTen, clean_descriptions, "train")
 
-vocabulary, clean_descriptions = parseData(testFile)
-vals = tf_idf("olympic gold athens", vocabTopTen, clean_descriptions, "test")
-vals = tf_idf("reuters stocks friday", vocabTopTen, clean_descriptions, "test")
-vals = tf_idf("investment market prices", vocabTopTen, clean_descriptions, "test")
+vocabulary, clean_descriptions = part_one.parseData(testFile)
+vals = tf_idf("olympic gold athens", vocabulary, clean_descriptions, "test")
+vals = tf_idf("reuters stocks friday", vocabulary, clean_descriptions, "test")
+vals = tf_idf("investment market prices", vocabulary, clean_descriptions, "test")
+
+randWords = [random.choice(vocabulary), random.choice(vocabulary), random.choice(vocabulary)]
+randString = " ".join(randWords)
+vals = tf_idf(randString, vocabulary, clean_descriptions, "test")
