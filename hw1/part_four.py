@@ -62,7 +62,7 @@ def simQuery(q, collection, model):
         d= collection[i]
         sv = sentence_vec(d, model)
         sim = model.wv.cosine_similarities(qVec, np.array([sv]))[0]
-        docList.append([i, sim])
+        docList.append([" ".join(collection[i]), sim])
 
     docList.sort(key = lambda x : x[1])
     return docList

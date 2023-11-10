@@ -40,6 +40,8 @@ def basic_bit_vector(q, vocabulary, descriptions, testType):
 
 
 vocabulary, clean_descriptions = part_one.parseData(trainFile)
+# use top 10 vocab words
+# for this I print out the docId
 vocabTopTen = vocabulary[:10]
 vals = basic_bit_vector("olympic gold athens", vocabTopTen, clean_descriptions, "train")
 vals = basic_bit_vector("reuters stocks friday", vocabTopTen, clean_descriptions, "train")
