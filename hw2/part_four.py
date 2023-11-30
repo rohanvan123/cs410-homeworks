@@ -33,10 +33,10 @@ def shared_words(q, docid, wordMap):
 def jelinek_mercer_smoothing(tf, doc_length, cf, total_words, smoothing_param):
     return (1 - smoothing_param) * (tf / doc_length) + smoothing_param * (cf / total_words)
 
-def probability_retrieval(query, vocabulary, wordMap, M, smoothing_param):
+def probability_retrieval(query, vocabulary, wordMap, M, smoothing_param ,limit):
     scores = []
 
-    for docid in range(5000):
+    for docid in range(limit):
         matched_words = shared_words(query, str(docid), wordMap)
         score = 0
         for w in matched_words:
@@ -63,10 +63,11 @@ vocabulary, wordMap, M = build_vocab.parseData(output_file)
 smoothing_param = 0.1
 
 vocabulary, wordMap, M = build_vocab.parseData(output_file)
-vals = probability_retrieval("olympic gold athens", vocabulary, wordMap, M, smoothing_param)
-vals = probability_retrieval("reuters stocks friday", vocabulary, wordMap, M, smoothing_param)
-vals = probability_retrieval("investment market prices", vocabulary, wordMap, M, smoothing_param)
+cap = 5000
+vals = probability_retrieval("olympic gold athens", vocabulary, wordMap, M, smoothing_param, cap)
+vals = probability_retrieval("reuters stocks friday", vocabulary, wordMap, M, smoothing_param, cap)
+vals = probability_retrieval("investment market prices", vocabulary, wordMap, M, smoothing_param, cap)
 
 randWords = [random.choice(vocabulary), random.choice(vocabulary), random.choice(vocabulary)]
 randString = " ".join(randWords)
-vals = probability_retrieval(randString, vocabulary, wordMap, M, smoothing_param)
+vals = probability_retrieval(randString, vocabulary, wordMap, M, smoothing_param, cap)
