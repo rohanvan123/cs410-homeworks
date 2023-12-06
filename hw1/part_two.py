@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import nltk
 from nltk.corpus import stopwords
-import part_one
+import hw3.part_one as part_one
 
 testFile = "./data/test.csv"
 trainFile = "./data/train.csv"
