@@ -13,7 +13,6 @@ import tensorflow as tf
 import logging 
 
 tf.get_logger().setLevel(logging.ERROR)
-
 testFile = "./data/test.csv"
 trainFile = "./data/train.csv"
 n_steps_in, n_steps_out = 3, 2
@@ -230,5 +229,4 @@ def part_one(include_stopwords):
     print(f"Our ouput has an f1 score of {f1_score}, with precision of {precision} and recall of {recall}")
     print("##################################")
 
-part_one(True)
-part_one(False)
+part_one(include_stopwords=False)
